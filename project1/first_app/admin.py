@@ -5,3 +5,7 @@ from first_app.models import AccessRecord, Topic, Webpage
 admin.site.register(AccessRecord)
 admin.site.register(Topic)
 admin.site.register(Webpage)
+
+#my admin username: Kat
+#email: ponkkat79@gmail.com
+#password: adminadmin
