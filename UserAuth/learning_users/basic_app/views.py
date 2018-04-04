@@ -13,16 +13,17 @@ def register(request):
 
         if user_form.is_valid() and profile_form.is_valid():
 
-            user = user_form.save()#save to the db
-            user.set_password(user_password)
-            user.save()
+            user = user_form.save()#save to db
+            user.set_password(user.password)#Hash the password
+            user.save()# update with Hashed password
 
             profile = profile_form.save(commit = False)
             profile.user = user # because of models,py/ OneToOneField
 
+            # if the profile picture provided
             if 'profile_pic' in request.FILES:
                 profile.profile_pic = request.FILES['profile_pic']
-
+            # Now save model
             profile.save()
 
             registered = True
@@ -33,4 +34,4 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileInfoForm()
 
-    return render(request, 'basic_app/registration.html', {'user_form': user_form, 'profile_form': profile_form, 'registered':registered })# keys with values
+    return render(request, 'basic_app/registration.html', {'user_form': user_form, 'profile_form': profile_form, 'registered':registered }) # This is the render and context dictionary, that feeds back to the registration.html file page.

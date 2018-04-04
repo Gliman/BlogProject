@@ -1,4 +1,4 @@
-from django.conf.urls imort urls
+from django.conf.urls import url
 from basic_app import views
 
 
